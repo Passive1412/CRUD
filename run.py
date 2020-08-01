@@ -1,5 +1,5 @@
-from app import app
-from db import db
+from backend.app import app
+from backend.db import db
 
 db.init_app(app)
 

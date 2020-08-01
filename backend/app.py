@@ -45,10 +45,10 @@ api.add_resource(ItemList, '/items')
 api.add_resource(StoreList, '/stores')
 api.add_resource(UserRegister, '/register')
 
-#if __name__ == '__main__':
-#    db.init_app(app)
-#    app.run(host='0.0.0.0', port=5000, debug=True)
-
 if __name__ == '__main__':
     db.init_app(app)
-    app.run(port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
+#if __name__ == '__main__':
+#    db.init_app(app)
+#    app.run(port=5000)
