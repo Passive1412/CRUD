@@ -30,7 +30,7 @@ class ItemModel(db.Model):
 
     @classmethod
     def find_all(cls):
-        return cls.querry.all()
+        return cls.query.all()
 
     def upserting_to_db(self):
         db.session.add(self)
