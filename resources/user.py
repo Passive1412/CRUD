@@ -43,3 +43,7 @@ class User(Resource):
         else:
             user.delete_from_db()
             return {'message': 'User deleted'}, 200
+
+class UserList(Resource):
+    def get(self):
+        return {'items': [x.json() for x in UserModel.find_all()]}
