@@ -7,9 +7,10 @@ from flask_restful import Api
 from flask_jwt_extended import JWTManager
 
 #from security import authenticate, identity as identity_function
-from resources.user import UserRegister, User, UserList, UserLogin, TokenRefresh
+from resources.user import UserRegister, User, UserList, UserLogin, UserLogout, TokenRefresh
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
+from blacklist import BLACKLIST
 
 from db import db
 DEBUG = False
@@ -22,6 +23,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #app.config['JWT_AUTH_USERNAME_KEY'] = 'email'
 app.config['JWT_SECRET_KEY'] = "marcus"
 app.config['PROPAGATE_EXCEPTIONS'] = True
+app.config['JWT_BLACKLIST_ENABLED'] = True
+app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 app.secret_key = 'marcus'
 api = Api(app)
 
@@ -38,6 +41,10 @@ def add_claims_to_jwt(identity):
         return {'is_admin': True}
     else:
         return {'is_admin': False}
+
+@jwt.token_in_blacklist_loader
+def check_if_token_in_blacklist(decrypted_token):
+    return decrypted_token['jti'] in BLACKLIST
 
 @jwt.expired_token_loader
 def expired_token_callback():
@@ -88,7 +95,6 @@ def revoked_token_callback():
 #        'code': error.status_code
 #    }). error.status_code
 
- # host 0.0.0.0:5000 at 172.18.64.200:5000
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(Item, '/item/<string:name>')
 api.add_resource(ItemList, '/items')
@@ -98,6 +104,7 @@ api.add_resource(User, '/user/<int:user_id>')
 api.add_resource(UserList, '/users')
 api.add_resource(UserLogin, '/login')
 api.add_resource(TokenRefresh, '/refresh')
+api.add_resource(UserLogout, '/logout')
 
 if __name__ == '__main__':
     db.init_app(app)
