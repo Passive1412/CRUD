@@ -19,7 +19,7 @@ app.config['JWT_AUTH_URL_RULE'] = '/login'
 app.config['JWT_EXPIRATION_DELT'] = timedelta(seconds=1800)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #app.config['JWT_AUTH_USERNAME_KEY'] = 'email'
-#app.config['PROPAGATE_EXCEPTIONS'] = True # To allow flask propagating exception even if debug is set to false on app
+app.config['PROPAGATE_EXCEPTIONS'] = True
 app.secret_key = 'jose'
 api = Api(app)
 
