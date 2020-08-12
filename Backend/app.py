@@ -95,16 +95,16 @@ def revoked_token_callback():
 #        'code': error.status_code
 #    }). error.status_code
 
-api.add_resource(Store, '/store/<string:name>')
-api.add_resource(Item, '/item/<string:name>')
-api.add_resource(ItemList, '/items')
-api.add_resource(StoreList, '/stores')
-api.add_resource(UserRegister, '/register')
-api.add_resource(User, '/user/<int:user_id>')
-api.add_resource(UserList, '/users')
-api.add_resource(UserLogin, '/login')
-api.add_resource(TokenRefresh, '/refresh')
-api.add_resource(UserLogout, '/logout')
+api.add_resource(Store, '/api/store/<string:name>')
+api.add_resource(Item, '/api/item/<string:name>')
+api.add_resource(ItemList, '/api/items')
+api.add_resource(StoreList, '/api/stores')
+api.add_resource(UserRegister, '/api/register')
+api.add_resource(User, '/api/user/<int:user_id>')
+api.add_resource(UserList, '/api/users')
+api.add_resource(UserLogin, '/api/login')
+api.add_resource(TokenRefresh, '/api/refresh')
+api.add_resource(UserLogout, '/api/logout')
 
 if __name__ == '__main__':
     db.init_app(app)
