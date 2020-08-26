@@ -3,19 +3,19 @@ import os
 from datetime import timedelta
 from flask import Flask, jsonify
 from flask_restful import Api
-#from flask_jwt import JWT
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 
-#from security import authenticate, identity as identity_function
 from resources.user import UserRegister, User, UserList, UserLogin, UserLogout, TokenRefresh
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 from blacklist import BLACKLIST
 
 from db import db
-DEBUG = False
+DEBUG = True
 
 app = Flask(__name__)
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
 app.config['JWT_AUTH_URL_RULE'] = '/login'
 app.config['JWT_EXPIRATION_DELT'] = timedelta(seconds=1800)
