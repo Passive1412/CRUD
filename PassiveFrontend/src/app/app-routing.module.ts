@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomepageComponent } from './homepage/homepage.component';
-import { LoginComponent } from './login/login.component';
-import { ProjectsComponent } from './projects/projects.component';
-import { WebcamComponent } from './webcam/webcam.component';
-import { AboutComponent } from './about/about.component'
-import { PortfolioComponent } from './portfolio/portfolio.component';
-import { ContactComponent } from './contact/contact.component';
-import { ProfileComponent } from './profile/profile.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { AboutComponent } from './pages/about/about.component'
+import { ContactComponent } from './pages/contact/contact.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { GalleryComponent } from './pages/gallery/gallery.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '*', component: HomepageComponent },
-  { path: 'About', component: AboutComponent },
-  { path: 'Portfolio', component: PortfolioComponent },
-  { path: 'Projects', component: ProjectsComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: 'home',  component: HomepageComponent },
 
+  { path: 'About', component: AboutComponent },
   { path: 'Contact', component: ContactComponent },
+  { path: 'Gallery', component: GalleryComponent },
+  
+  { path: 'Projects', component: ProjectsComponent },
   { path: 'Profile', component: ProfileComponent },
   { path: 'Login', component: LoginComponent },
 
-  { path: '**', component: HomepageComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

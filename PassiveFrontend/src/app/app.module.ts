@@ -3,32 +3,41 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { LoginComponent } from './login/login.component';
-import { WebcamComponent } from './webcam/webcam.component';
-import { ProjectsComponent } from './projects/projects.component';
-import { AboutComponent } from './about/about.component';
-import { PortfolioComponent } from './portfolio/portfolio.component';
-import { ContactComponent } from './contact/contact.component';
-import { ProfileComponent } from './profile/profile.component';
-import { PlantTimelineComponent } from './projects/projects/plant-timeline/plant-timeline.component';
-import { MonsterGridComponent } from './projects/projects/monster-grid/monster-grid.component';
-import { PythonGameComponent } from './projects/projects/python-game/python-game.component';
+
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { NavigationComponent } from './front/navigation/navigation.component';
+import { HeaderComponent } from './front/header/header.component';
+import { BannersComponent } from './front/banners/banners.component';
+import { GalleryComponent } from './pages/gallery/gallery.component';
+import { PlantComponent } from './core/plant/plant.component';
+import { HeroMonsterComponent } from './core/hero-monster/hero-monster.component';
+import { WebcamComponent } from './core/webcam/webcam.component';
+import { StarcraftComponent } from './core/starcraft/starcraft.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     LoginComponent,
-    WebcamComponent,
     ProjectsComponent,
     AboutComponent,
-    PortfolioComponent,
     ContactComponent,
     ProfileComponent,
-    PlantTimelineComponent,
-    MonsterGridComponent,
-    PythonGameComponent
+    NotFoundComponent,
+    NavigationComponent,
+    HeaderComponent,
+    BannersComponent,
+    GalleryComponent,
+    PlantComponent,
+    HeroMonsterComponent,
+    WebcamComponent,
+    StarcraftComponent,
   ],
   imports: [
     BrowserModule,
