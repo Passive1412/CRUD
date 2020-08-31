@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { PlantComponent } from './core/plant/plant.component';
 import { HeroMonsterComponent } from './core/hero-monster/hero-monster.component';
 import { WebcamComponent } from './core/webcam/webcam.component';
 import { StarcraftComponent } from './core/starcraft/starcraft.component';
+import { MonsterListComponent } from './pages/projects/monster-list/monster-list.component';
 
 @NgModule({
   declarations: [
@@ -38,10 +40,12 @@ import { StarcraftComponent } from './core/starcraft/starcraft.component';
     HeroMonsterComponent,
     WebcamComponent,
     StarcraftComponent,
+    MonsterListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]

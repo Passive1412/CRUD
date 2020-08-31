@@ -9,6 +9,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
+import { MonsterListComponent } from './pages/projects/monster-list/monster-list.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home',  component: HomepageComponent },
@@ -16,10 +18,12 @@ const routes: Routes = [
   { path: 'About', component: AboutComponent },
   { path: 'Contact', component: ContactComponent },
   { path: 'Gallery', component: GalleryComponent },
-  
+
   { path: 'Projects', component: ProjectsComponent },
   { path: 'Profile', component: ProfileComponent },
   { path: 'Login', component: LoginComponent },
+
+  { path: 'Projects/MonsterList', component: MonsterListComponent },
 
   { path: '**', component: NotFoundComponent },
 ];
