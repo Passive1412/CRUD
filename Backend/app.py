@@ -102,7 +102,7 @@ api.add_resource(StoreList, '/api/stores')
 
 api.add_resource(UserList, '/api/users')
 
-api.add_resource(UserIn, '/api/account/user/')
+# api.add_resource(UserIn, '/api/account/user')
 
 api.add_resource(User, '/api/account/user/<int:user_id>')
 

@@ -16,4 +16,9 @@ export class HomepageComponent implements OnInit {
     this.accessToken = localStorage.getItem('access_token');
     this.refreshToken = localStorage.getItem('refresh_token');
   }
+
+  logout() {
+    this.authService.logout();
+  }
+
 }
