@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://passiverobotics/',
+  apiUrl: 'https://passiverobotics.com/',
 };
