@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core';
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  selector: 'app-profile',
+  templateUrl: './logout.component.html',
+  styleUrls: ['./logout.component.scss']
 })
-export class HomepageComponent implements OnInit {
+export class LogoutComponent implements OnInit {
   accessToken = '';
   refreshToken = '';
 

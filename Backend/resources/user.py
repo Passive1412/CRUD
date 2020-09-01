@@ -6,19 +6,20 @@ from blacklist import BLACKLIST
 
 _user_parser = reqparse.RequestParser()
 _user_parser.add_argument('username',
-    type=str,
-    required=True,
-    help="This field cannot be left blank!"
-)
+                          type=str,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
 _user_parser.add_argument('password',
-    type=str,
-    required=True,
-    help="This field cannot be left blank!"
-)     
+                          type=str,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
+
 
 class UserRegister(Resource):
 
-    def post(self):   
+    def post(self):
         data = _user_parser.parse_args()
 
         if UserModel.find_by_username(data['username']):
@@ -58,7 +59,7 @@ class UserLogin(Resource):
         user = UserModel.find_by_username(data['username'])
 
         if user and safe_str_cmp(user.password, data['password']):
-            access_token = create_access_token(identity=user.id, fresh=True) 
+            access_token = create_access_token(identity=user.id, fresh=True)
             refresh_token = create_refresh_token(user.id)
             return {
                 'access_token': access_token,
@@ -72,6 +73,7 @@ class UserList(Resource):
     def get(self):
         return {'items': [x.json() for x in UserModel.find_all()]}
 
+
 class UserLogout(Resource):
     @jwt_required
     def post(self):
@@ -81,7 +83,7 @@ class UserLogout(Resource):
 
 
 class TokenRefresh(Resource):
-    @jwt_refresh_token_required
+    # @jwt_refresh_token_required
     def post(self):
         current_user = get_jwt_identity()
         new_token = create_access_token(identity=current_user, fresh=False)

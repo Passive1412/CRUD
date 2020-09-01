@@ -1,9 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { CoreModule } from './core/core.module';
 
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -16,11 +20,8 @@ import { NavigationComponent } from './front/navigation/navigation.component';
 import { HeaderComponent } from './front/header/header.component';
 import { BannersComponent } from './front/banners/banners.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
-import { PlantComponent } from './core/plant/plant.component';
-import { HeroMonsterComponent } from './core/hero-monster/hero-monster.component';
-import { WebcamComponent } from './core/webcam/webcam.component';
-import { StarcraftComponent } from './core/starcraft/starcraft.component';
 import { MonsterListComponent } from './pages/projects/monster-list/monster-list.component';
+import { LogoutComponent } from './pages/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -36,15 +37,15 @@ import { MonsterListComponent } from './pages/projects/monster-list/monster-list
     HeaderComponent,
     BannersComponent,
     GalleryComponent,
-    PlantComponent,
-    HeroMonsterComponent,
-    WebcamComponent,
-    StarcraftComponent,
     MonsterListComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    CoreModule,
     AgGridModule.withComponents([])
   ],
   providers: [],
