@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 
 import { LoginComponent } from './pages/login/login.component';
+import { RegistrationComponent } from './pages/registration/registration.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 
 import { ProjectsComponent } from './pages/projects/projects.component';
@@ -24,6 +25,8 @@ const routes: Routes = [
   
   { path: 'Projects', component: ProjectsComponent, canActivate: [AuthGuard] },
   { path: 'Profile', component: ProfileComponent },
+
+  { path: 'Register', component: RegistrationComponent },
   { path: 'Login', component: LoginComponent },
   { path: 'Logout', component: LogoutComponent },
 

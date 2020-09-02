@@ -4,25 +4,41 @@ import { AuthService } from '../../core';
 import { finalize } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
+import { SocialAuthService } from 'angularx-social-login';
+import { SocialUser } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  AmazonLoginProvider,
+} from 'angularx-social-login';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  user: SocialUser;
   busy = false;
   username = '';
   password = '';
   loginError = false;
   private subscription: Subscription;
 
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+
+    private authServiceSocial: SocialAuthService
   ) {}
 
   ngOnInit(): void {
+    this.authServiceSocial.authState.subscribe(user => {
+      this.user = user;
+    });
+
     this.subscription = this.authService.user$.subscribe((x) => {
       if (this.route.snapshot.url[0].path === 'login') {
         const accessToken = localStorage.getItem('access_token');
@@ -31,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '';
           this.router.navigate([returnUrl]);
         }
-      } // optional touch-up: if a tab shows login page, then refresh the page to reduce duplicate login
+      }
     });
   }
 
@@ -57,4 +73,21 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
+
+  signInWithGoogle(): void {
+    this.authServiceSocial.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithFB(): void {
+    this.authServiceSocial.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithAmazon(): void {
+    this.authServiceSocial.signIn(AmazonLoginProvider.PROVIDER_ID);
+  }
+
+  signOut(): void {
+    this.authServiceSocial.signOut();
+  }
+
 }

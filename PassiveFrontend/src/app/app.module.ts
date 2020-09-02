@@ -1,6 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  AmazonLoginProvider,
+} from 'angularx-social-login';
+
 import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
 
@@ -22,6 +30,7 @@ import { BannersComponent } from './front/banners/banners.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { MonsterListComponent } from './pages/projects/monster-list/monster-list.component';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { RegistrationComponent } from './pages/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +48,7 @@ import { LogoutComponent } from './pages/logout/logout.component';
     GalleryComponent,
     MonsterListComponent,
     LogoutComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,9 +56,36 @@ import { LogoutComponent } from './pages/logout/logout.component';
     FormsModule,
     HttpClientModule,
     CoreModule,
+    ReactiveFormsModule,
+    SocialLoginModule,
     AgGridModule.withComponents([])
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              'clientId'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('1187487334957988'),
+          },
+          {
+            id: AmazonLoginProvider.PROVIDER_ID,
+            provider: new AmazonLoginProvider(
+              'clientId'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
