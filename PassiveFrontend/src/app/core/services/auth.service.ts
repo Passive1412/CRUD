@@ -11,6 +11,7 @@ interface LoginResult {
   role: string;
   originalUserName: string;
   id: string;
+
   access_token: string;
   refresh_token: string;
 }
