@@ -12,7 +12,7 @@ from resources.store import Store, StoreList
 from blacklist import BLACKLIST
 
 from db import db
-DEBUG = False
+DEBUG = True
 
 app = Flask(__name__)
 CORS(app)

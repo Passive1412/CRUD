@@ -19,7 +19,7 @@ _user_parser_register.add_argument('password',
                           )
 _user_parser_register.add_argument('provider',
                           type=str,
-                          required=True,
+                          required=False,
                           help="This field cannot be left blank!"
                           )
 _user_parser_register.add_argument('email',
@@ -29,27 +29,27 @@ _user_parser_register.add_argument('email',
                           )
 _user_parser_register.add_argument('name',
                           type=str,
-                          required=True,
+                          required=False,
                           help="This field cannot be left blank!"
                           )
 _user_parser_register.add_argument('photoUrl',
                           type=str,
-                          required=True,
+                          required=False,
                           help="This field cannot be left blank!"
                           )
 _user_parser_register.add_argument('firstName',
                           type=str,
-                          required=True,
+                          required=False,
                           help="This field cannot be left blank!"
                           )
 _user_parser_register.add_argument('lastName',
                           type=str,
-                          required=True,
+                          required=False,
                           help="This field cannot be left blank!"
                           )
 _user_parser_register.add_argument('phoneNumber',
                           type=str,
-                          required=True,
+                          required=False,
                           help="This field cannot be left blank!"
                           )
 
