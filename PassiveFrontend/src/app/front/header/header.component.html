@@ -1,8 +1,17 @@
-<nav class="navbar sticky-top navbar-expand-sm" style="border-bottom:solid 2px #7da1da">
+<nav
+  class="navbar sticky-top navbar-expand-sm"
+  style="border-bottom: solid 2px #7da1da"
+>
   <div class="container">
     <a class="navbar-brand" href="#">Passive Robotics</a>
-    <h1 class="pb-2 ml-lg-2 mx-3"><a href="#"><i class="fa fa-android" aria-hidden="true"></i></a></h1>
-    <button class="navbar-toggler" data-toggle="collapse" data-target=".navbars">
+    <h1 class="pb-2 ml-lg-2 mx-3">
+      <a href="#"><i class="fa fa-android" aria-hidden="true"></i></a>
+    </h1>
+    <button
+      class="navbar-toggler"
+      data-toggle="collapse"
+      data-target=".navbars"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse navbars" id="collapse_target1">
@@ -10,9 +19,15 @@
         <li>
           <form class="form-inline ml-auto">
             <div class="input-group">
-              <input type="text" class="form-control border-dark" placeholder="Search">
+              <input
+                type="text"
+                class="form-control border-dark"
+                placeholder="Search"
+              />
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
+                <button class="btn btn-outline-secondary" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
               </div>
             </div>
           </form>
@@ -20,24 +35,44 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link py-0 pr-3" href="#"><i class="fa fa-instagram"></i></a>
+          <a class="nav-link py-0 pr-3" href="#"
+            ><i class="fa fa-instagram"></i
+          ></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link py-0 pr-3" href="#"><i class="fa fa-twitter"></i></a>
+          <a class="nav-link py-0 pr-3" href="#"
+            ><i class="fa fa-twitter"></i
+          ></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link py-0 pr-3" href="#"><i class="fa fa-facebook"></i></a>
+          <a class="nav-link py-0 pr-3" href="#"
+            ><i class="fa fa-facebook"></i
+          ></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link py-0 pr-3" href="#"><i class="fa fa-youtube"></i></a>
+          <a class="nav-link py-0 pr-3" href="#"
+            ><i class="fa fa-youtube"></i
+          ></a>
         </li>
         <li class="nav-item-end">
-          <a class="nav-link py-0 pr-3" href="#"><i class="fa fa-twitch"></i></a>
+          <a class="nav-link py-0 pr-3" href="#"
+            ><i class="fa fa-twitch"></i
+          ></a>
         </li>
-
-        <li class="nav-item-login">
-          <a class="nav-link" href="Login"> <span class="fa fa-sign-in"></span> Login / Register</a>
-        </li>
+        <div *ngIf="authService.user$ | async as user; else login">
+          <li class="nav-item-login">
+            <a class="nav-link" href="Profile">
+              <span class="fa fa-user"></span> User: {{ user.username }}</a
+            >
+          </li>
+        </div>
+        <ng-template #login>
+          <li class="nav-item-login">
+            <a class="nav-link" href="Login">
+              <span class="fa fa-sign-in"></span> Login / Register</a
+            >
+          </li>
+        </ng-template>
       </ul>
     </div>
   </div>
