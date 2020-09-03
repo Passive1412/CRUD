@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { map, tap, delay, finalize } from 'rxjs/operators';
 import { ApplicationUser } from '../interfaces/application-user';
@@ -10,6 +10,7 @@ interface LoginResult {
   username: string;
   role: string;
   originalUserName: string;
+  id: string;
   access_token: string;
   refresh_token: string;
 }
@@ -23,22 +24,6 @@ export class AuthService implements OnDestroy {
   private _user = new BehaviorSubject<ApplicationUser>(null);
   user$: Observable<ApplicationUser> = this._user.asObservable();
 
-  headers: HttpHeaders = new HttpHeaders({
-    'Content-type': 'application-/json',
-    Accept: 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': '*',
-    'Access-Control-Allow-Headers':
-      'Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization',
-  });
-
-  private getOptions(params?: HttpParams) {
-    return {
-      headers: this.headers,
-      params,
-    };
-  }
-
   private storageEventListener(event: StorageEvent) {
     if (event.storageArea === localStorage) {
       if (event.key === 'logout-event') {
@@ -47,11 +32,12 @@ export class AuthService implements OnDestroy {
       }
       if (event.key === 'login-event') {
         this.stopTokenTimer();
-        this.http.get<LoginResult>(`${this.apiUrl}/user`).subscribe((x) => {
+        this.http.get<LoginResult>(`${this.apiUrl}/user/1`).subscribe((x) => {
           this._user.next({
             username: x.username,
             role: x.role,
             originalUserName: x.originalUserName,
+            id: "1",
           });
         });
       }
@@ -75,6 +61,7 @@ export class AuthService implements OnDestroy {
             username: x.username,
             role: x.role,
             originalUserName: x.originalUserName,
+            id: "1",
           });
           this.setLocalStorage(x);
           this.startTokenTimer();
@@ -100,6 +87,7 @@ export class AuthService implements OnDestroy {
   refreshToken() {
     const refreshToken = localStorage.getItem('refresh_token');
     if (!refreshToken) {
+      console.log("asdasdasd")
       this.clearLocalStorage();
       return of(null);
     }
@@ -112,6 +100,7 @@ export class AuthService implements OnDestroy {
             username: x.username,
             role: x.role,
             originalUserName: x.originalUserName,
+            id: "1",
           });
           this.setLocalStorage(x);
           this.startTokenTimer();

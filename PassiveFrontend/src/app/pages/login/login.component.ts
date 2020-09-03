@@ -4,13 +4,12 @@ import { AuthService } from '../../core';
 import { finalize } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
-import { SocialAuthService } from 'angularx-social-login';
-import { SocialUser } from 'angularx-social-login';
-import {
-  GoogleLoginProvider,
-  FacebookLoginProvider,
-  AmazonLoginProvider,
-} from 'angularx-social-login';
+import { SocialAuthService, SocialUser } from "angularx-social-login";
+// import {
+//   GoogleLoginProvider,
+//   FacebookLoginProvider,
+//   AmazonLoginProvider,
+// } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -18,27 +17,24 @@ import {
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  user: SocialUser;
+  // user = SocialUser
   busy = false;
   username = '';
   password = '';
   loginError = false;
   private subscription: Subscription;
 
-  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService,
-
-    private authServiceSocial: SocialAuthService
-  ) {}
+    private authService: AuthService
+  ) // private authServiceSocial: SocialAuthService
+  {}
 
   ngOnInit(): void {
-    this.authServiceSocial.authState.subscribe(user => {
-      this.user = user;
-    });
-
+    // this.authServiceSocial.authState.subscribe((user) => {
+    //   this.user = user;
+    // });
     this.subscription = this.authService.user$.subscribe((x) => {
       if (this.route.snapshot.url[0].path === 'login') {
         const accessToken = localStorage.getItem('access_token');
@@ -74,20 +70,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription?.unsubscribe();
   }
 
-  signInWithGoogle(): void {
-    this.authServiceSocial.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
+  // signInWithGoogle(): void {
+  //   this.authServiceSocial.signIn(GoogleLoginProvider.PROVIDER_ID);
+  // }
 
-  signInWithFB(): void {
-    this.authServiceSocial.signIn(FacebookLoginProvider.PROVIDER_ID);
-  }
+  // signInWithFB(): void {
+  //   this.authServiceSocial.signIn(FacebookLoginProvider.PROVIDER_ID);
+  // }
 
-  signInWithAmazon(): void {
-    this.authServiceSocial.signIn(AmazonLoginProvider.PROVIDER_ID);
-  }
+  // signInWithAmazon(): void {
+  //   this.authServiceSocial.signIn(AmazonLoginProvider.PROVIDER_ID);
+  // }
 
-  signOut(): void {
-    this.authServiceSocial.signOut();
-  }
-
+  // signOut(): void {
+  //   this.authServiceSocial.signOut();
+  // }
 }

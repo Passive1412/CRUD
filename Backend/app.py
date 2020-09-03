@@ -32,7 +32,6 @@ api = Api(app)
 def create_tables():
     db.create_all()
 
-#jwt = JWT(app, authenticate, identity_function)
 jwt = JWTManager(app)
 
 @jwt.user_claims_loader
@@ -100,12 +99,9 @@ api.add_resource(Item, '/api/item/<string:name>')
 api.add_resource(ItemList, '/api/items')
 api.add_resource(StoreList, '/api/stores')
 
+
 api.add_resource(UserList, '/api/users')
-
-# api.add_resource(UserIn, '/api/account/user')
-
 api.add_resource(User, '/api/account/user/<int:user_id>')
-
 api.add_resource(UserRegister, '/api/account/register')
 api.add_resource(UserLogin, '/api/account/login')
 api.add_resource(TokenRefresh, '/api/account/refresh')

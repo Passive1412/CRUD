@@ -2,7 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
 import {
   GoogleLoginProvider,
   FacebookLoginProvider,
@@ -58,7 +61,7 @@ import { RegistrationComponent } from './pages/registration/registration.compone
     CoreModule,
     ReactiveFormsModule,
     SocialLoginModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
   ],
   providers: [
     {
@@ -68,24 +71,20 @@ import { RegistrationComponent } from './pages/registration/registration.compone
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              'clientId'
-            ),
+            provider: new GoogleLoginProvider('clientId'),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('1187487334957988'),
+            provider: new FacebookLoginProvider('clientId'),
           },
           {
             id: AmazonLoginProvider.PROVIDER_ID,
-            provider: new AmazonLoginProvider(
-              'clientId'
-            ),
+            provider: new AmazonLoginProvider('clientId'),
           },
         ],
       } as SocialAuthServiceConfig,
-    }
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

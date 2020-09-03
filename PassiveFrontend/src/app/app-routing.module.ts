@@ -16,13 +16,16 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'home',  component: HomepageComponent },
+  {
+    path: '',
+    pathMatch: 'full',
+    component: HomepageComponent,
+  },
 
   { path: 'About', component: AboutComponent },
   { path: 'Contact', component: ContactComponent },
   { path: 'Gallery', component: GalleryComponent },
-  
+
   { path: 'Projects', component: ProjectsComponent, canActivate: [AuthGuard] },
   { path: 'Profile', component: ProfileComponent },
 

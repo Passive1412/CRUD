@@ -62,7 +62,7 @@
         <div *ngIf="authService.user$ | async as user; else login">
           <li class="nav-item-login">
             <a class="nav-link" href="Profile">
-              <span class="fa fa-user"></span> User: {{ user.username }}</a
+              <span class="fa fa-user"></span> User: {{ user.role }}</a
             >
           </li>
         </div>

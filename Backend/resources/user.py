@@ -3,6 +3,7 @@ from flask_jwt_extended import create_access_token, create_refresh_token, jwt_re
 from models.user import UserModel
 from werkzeug.security import safe_str_cmp
 from blacklist import BLACKLIST
+import time
 
 _user_parser = reqparse.RequestParser()
 _user_parser.add_argument('username',
@@ -15,17 +16,52 @@ _user_parser.add_argument('password',
                           required=True,
                           help="This field cannot be left blank!"
                           )
+_user_parser.add_argument('provider',
+                          type=str,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
+_user_parser.add_argument('email',
+                          type=str,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
+_user_parser.add_argument('name',
+                          type=str,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
+_user_parser.add_argument('photoUrl',
+                          type=str,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
+_user_parser.add_argument('firstName',
+                          type=str,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
+_user_parser.add_argument('lastName',
+                          type=str,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
+_user_parser.add_argument('phoneNumber',
+                          type=str,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
 
 
 class UserRegister(Resource):
 
     def post(self):
         data = _user_parser.parse_args()
-
         if UserModel.find_by_username(data['username']):
             return {"mesage": "User with that name already exist"}, 201
         else:
             user = UserModel(**data)
+            print(user)
             user.upserting_to_db()
         return {"mesage": "User created sucessfully"}, 201
 

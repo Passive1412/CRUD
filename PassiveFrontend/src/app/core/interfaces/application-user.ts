@@ -1,6 +1,6 @@
 export interface ApplicationUser {
-    username: string;
-    role: string;
-    originalUserName: string;
-  }
-  
+  username: string;
+  role: string;
+  originalUserName: string;
+  id: string;
+}
