@@ -5,58 +5,71 @@ from werkzeug.security import safe_str_cmp
 from blacklist import BLACKLIST
 import time
 
-_user_parser = reqparse.RequestParser()
-_user_parser.add_argument('username',
+_user_parser_register = reqparse.RequestParser()
+
+_user_parser_register.add_argument('username',
                           type=str,
                           required=True,
                           help="This field cannot be left blank!"
                           )
-_user_parser.add_argument('password',
+_user_parser_register.add_argument('password',
                           type=str,
                           required=True,
                           help="This field cannot be left blank!"
                           )
-_user_parser.add_argument('provider',
+_user_parser_register.add_argument('provider',
                           type=str,
                           required=True,
                           help="This field cannot be left blank!"
                           )
-_user_parser.add_argument('email',
+_user_parser_register.add_argument('email',
                           type=str,
                           required=True,
                           help="This field cannot be left blank!"
                           )
-_user_parser.add_argument('name',
+_user_parser_register.add_argument('name',
                           type=str,
                           required=True,
                           help="This field cannot be left blank!"
                           )
-_user_parser.add_argument('photoUrl',
+_user_parser_register.add_argument('photoUrl',
                           type=str,
                           required=True,
                           help="This field cannot be left blank!"
                           )
-_user_parser.add_argument('firstName',
+_user_parser_register.add_argument('firstName',
                           type=str,
                           required=True,
                           help="This field cannot be left blank!"
                           )
-_user_parser.add_argument('lastName',
+_user_parser_register.add_argument('lastName',
                           type=str,
                           required=True,
                           help="This field cannot be left blank!"
                           )
-_user_parser.add_argument('phoneNumber',
+_user_parser_register.add_argument('phoneNumber',
                           type=str,
                           required=True,
                           help="This field cannot be left blank!"
                           )
 
+
+_user_parser_login = reqparse.RequestParser()
+_user_parser_login.add_argument('username',
+                          type=str,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
+_user_parser_login.add_argument('password',
+                          type=str,
+                          required=True,
+                          help="This field cannot be left blank!"
+                          )
 
 class UserRegister(Resource):
 
     def post(self):
-        data = _user_parser.parse_args()
+        data = _user_parser_register.parse_args()
         if UserModel.find_by_username(data['username']):
             return {"mesage": "User with that name already exist"}, 201
         else:
@@ -90,10 +103,8 @@ class UserLogin(Resource):
 
     @classmethod
     def post(cls):
-        data = _user_parser.parse_args()
-
+        data = _user_parser_login.parse_args()
         user = UserModel.find_by_username(data['username'])
-
         if user and safe_str_cmp(user.password, data['password']):
             access_token = create_access_token(identity=user.id, fresh=True)
             refresh_token = create_refresh_token(user.id)
